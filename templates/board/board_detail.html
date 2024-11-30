@@ -1,0 +1,28 @@
+{% extends 'common/base.html' %}
+
+{% block title %}Board: {{ board.name }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="board-title">{{ board.name }}</h1>
+        <p class="board-description">{{ board.description }}</p>
+
+        <h2>Posts in this Board:</h2>
+        <ul class="post-list">
+            {% for post in posts %}
+                <li class="post-item">
+                    <a href="{% url 'post:post_detail' pk=post.pk %}" class="post-link">{{ post.title }} ({{ post.tag.upper }})</a>
+                </li>
+            {% empty %}
+                <li>No posts available yet.</li>
+            {% endfor %}
+        </ul>
+
+        {% if user.is_authenticated %}
+            <!-- Link to edit the board -->
+            <div class="edit-board">
+                <a href="{% url 'board:edit_board' pk=board.pk %}" class="btn btn-primary">Edit Board</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'common/base.html' %}
+
+{% block title %}Boards{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="page-title">Boards</h1>
+
+        {% if user.is_authenticated %}
+            <div class="create-board">
+                <a href="{% url 'board:create_board' %}" class="btn cta-btn">Create a New Board</a>
+            </div>
+        {% endif %}
+
+        <ul class="board-list">
+            {% for board in boards %}
+                <li class="board-item">
+                    <a href="{% url 'board:board_detail' pk=board.pk %}" class="board-link">{{ board.name }}</a>
+                    {% if board.user == request.user %}
+                        <a href="{% url 'board:delete_board' pk=board.pk %}" class="btn btn-delete">Delete</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

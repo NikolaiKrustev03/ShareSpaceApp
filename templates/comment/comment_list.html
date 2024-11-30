@@ -1,0 +1,7 @@
+<h1>{{ user_profile.username }}</h1>
+<p>Email: {{ user_profile.email }}</p>
+<p>Bio: {{ user_profile.bio }}</p>
+<p>Birthdate: {{ user_profile.birth_date }}</p>
+<img src="{{ user_profile.profile_picture_url }}" alt="Profile Picture">
+<a href="{% url 'profile_edit' %}">Edit Profile</a>
+<a href="{% url 'profile_delete' %}">Delete Profile</a>

@@ -1,0 +1,27 @@
+# Python bytecode
+*.pyc
+__pycache__/
+
+# VENVs
+venv/
+env/
+
+# Django migrations
+*/migrations/*
+
+# Django secret key
+.env
+
+# Logs
+*.log
+
+# OS-specific 
+.DS_Store
+
+# IDE-specific
+.idea/
+.vscode/
+
+# PostgreSQL
+*.sql
+*.pgsql

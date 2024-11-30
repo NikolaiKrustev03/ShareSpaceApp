@@ -1,0 +1,119 @@
+{% extends 'common/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+    <div class="post-detail">
+        <header class="post-header">
+        <div class="title-likes">
+            <div class="post-header-info">
+                <h4>Title: {{ post.title }}</h4>
+                <h4><strong>Tag:</strong> {{ post.get_tag_display }}</h4>
+            </div>
+
+
+            <div class="post-likes">
+                <h5>{{ post.likes.count }} Likes</h5>
+                {% if user.is_authenticated %}
+                    <form method="POST" action="{% url 'post:toggle_like' pk=post.pk %}">
+                        {% csrf_token %}
+                        {% if has_liked %}
+                            <button type="submit" class="post-btn">Unlike</button>
+                        {% else %}
+                            <button type="submit" class="post-btn">Like</button>
+                        {% endif %}
+                    </form>
+                {% else %}
+                    <p>You must be logged in to like this post.</p>
+                {% endif %}
+            </div>
+        </div>
+        </header>
+
+        <section class="post-content">
+            <p>{{ post.content }}</p>
+            <div class="post-images">
+                {% if post.image1 %}
+                    <img src="{{ post.image1.url }}" alt="Image 1" class="post-image">
+                {% endif %}
+                {% if post.image2 %}
+                    <img src="{{ post.image2.url }}" alt="Image 2" class="post-image">
+                {% endif %}
+                {% if post.image3 %}
+                    <img src="{{ post.image3.url }}" alt="Image 3" class="post-image">
+                {% endif %}
+            </div>
+        </section>
+
+        {% if is_owner%}
+            <div class="post-actions">
+                <a href="{% url 'post:post_edit' pk=post.pk %}" class="btn btn-edit">Edit Post</a>
+                <a href="{% url 'post:post_delete' pk=post.pk %}" class="btn btn-delete">Delete Post</a>
+            </div>
+        {% elif user.is_staff %}
+            <div class="post-actions">
+                <a href="{% url 'post:post_delete' pk=post.pk %}" class="btn btn-delete">Delete Post</a>
+            </div>
+        {% endif %}
+
+
+        <section class="post-comments">
+            <h3>Comments</h3>
+            {% for comment in comments %}
+                <div class="comment-item">
+                    <p><strong>{{ comment.user.username }}:</strong> {{ comment.content }}</p>
+                    <p><small>{{ comment.created_at }}</small></p>
+                    {% if comment.user == request.user  or user.is_staff%}
+
+                        <form method="POST" action="{% url 'comment:comment_delete' pk=comment.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="post-btn">Delete Comment</button>
+                        </form>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <p>No comments yet.</p>
+            {% endfor %}
+        </section>
+
+
+        {% if user.is_authenticated %}
+            <section class="add-comment">
+                <form method="POST" action="{% url 'comment:add_comment' post.pk %}">
+                    {% csrf_token %}
+                    <label>
+                        <textarea name="content" placeholder="Write a comment..." required></textarea>
+                    </label>
+                    <button type="submit" class="post-btn">Post Comment</button>
+                </form>
+            </section>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+            <section class="save-to-board">
+                <hr>
+                <h3>Save Post to Board</h3>
+                <form method="POST" action="{% url 'post:save_to_board' post.pk %}">
+                    {% csrf_token %}
+                    <label for="boards">Choose a Board(s):</label>
+                    <select name="boards" id="boards" multiple>
+                        {% for board in boards %}
+                            {% if board.user == user %}
+                                <option value="{{ board.pk }}">{{ board.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="post-btn">Save to Selected Board(s)</button>
+                </form>
+            </section>
+            {% else %}
+            <h3>In order to comment, like, or save posts to your boards, you must
+        <a href="{% url 'user:login' %}" class="cta-link">log in</a>
+        </h3>
+        {% endif %}
+
+
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'common/base.html' %}
+
+{% block title %}Profile View{% endblock %}
+
+{% block content %}
+    <div class="profile-container">
+
+        <div class="profile-info">
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Username:</strong> {{ user.username }}</li>
+                <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+                <li class="list-group-item">
+                </li>
+            </ul>
+        </div>
+
+        <div class="profile-actions">
+            <a href="{% url 'user:edit' %}" class="btn btn-edit">Edit Profile</a>
+            <a href="{% url 'user:delete' %}" class="btn btn-danger">Delete Profile</a>
+        </div>
+    </div>
+{% endblock %}

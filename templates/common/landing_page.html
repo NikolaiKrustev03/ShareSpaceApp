@@ -1,0 +1,30 @@
+
+{% extends 'common/base.html' %}
+
+{% block title %}Share Space{% endblock %}
+
+{% block content %}
+    <section class="landing-section">
+        <div class="welcome-message">
+            {% if user.is_authenticated %}
+                <h1>Welcome to Share Space, {{ user.username }}!</h1>
+            {% else %}
+                <h1>Welcome to Share Space!</h1>
+            {% endif %}
+
+            <p>Your space to share, explore, and discover amazing posts—from inspiring photography to useful facts and everything in between!</p>
+            <p><strong>Got something worth sharing?</strong> Post it and let the world see what you're passionate about.</p>
+        </div>
+
+
+        <div class="features">
+            <h2>You can:</h2>
+            <ul>
+                <li><strong>Inspire Others:</strong> Share your photography, stories, or knowledge with the world.</li>
+                <li><strong>Engage:</strong> Comment, like, and interact with content that sparks your interest.</li>
+                <li><strong>Save What You Love:</strong> Bookmark posts you want to come back to later.</li>
+                <li><strong>Explore:</strong> Discover new ideas, trends, and facts that expand your horizons.</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}

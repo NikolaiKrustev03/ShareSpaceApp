@@ -1,0 +1,14 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+<h1>Edit Board: {{ board.name }}</h1>
+<div class="board-edit">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
+
+<a href="{% url 'board:board_detail' pk=board.pk %}" class="btn btn-secondary">Back to Board</a>
+{% endblock %}

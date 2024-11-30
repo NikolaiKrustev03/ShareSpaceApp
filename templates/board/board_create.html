@@ -1,0 +1,14 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+<h1>Create a New Board</h1>
+    <div class="create-board-form">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn cta-btn">Create Board</button>
+
+            </form>
+            </div>
+<a href="{% url 'board:board_list' %}" class="btn btn-secondary">Back to Board List</a>
+{% endblock %}
