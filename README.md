@@ -14,8 +14,8 @@ Follow these steps to set up and run the project on your local machine.
    Run the following command to clone the repository:
 
    ```bash
-   git clone https://github.com/NikolaiKrustev03/ShareSpace.git
-   cd ShareSpace
+   git clone https://github.com/NikolaiKrustev03/ShareSpaceApp.git
+   cd ShareSpaceApp
    ```
 
 ### Step 2: Set up virtual enviroment
