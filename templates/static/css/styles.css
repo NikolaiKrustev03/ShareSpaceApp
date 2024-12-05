@@ -9,6 +9,14 @@ body {
     min-height: 100vh;
 }
 
+.post-detail,
+.profile-container,
+.edit-post-container,
+.container,
+.page-header {
+    background-color: #8b5c9e;
+}
+
 header {
     background-color: #333;
     padding: 10px 0;
@@ -33,19 +41,6 @@ header {
     background-color: #003774;
 }
 
-.post-images {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.post-image {
-    max-width: 30%;
-    height: auto;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
 
 .post-actions {
     margin-top: 20px;
@@ -57,7 +52,6 @@ header {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #8b5c9e;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -108,15 +102,8 @@ header {
 }
 
 .post-images {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.post-image {
     max-width: 30%;
-    height: auto;
+    height: 200px;
     border-radius: 5px;
     margin-bottom: 10px;
 }
@@ -170,7 +157,6 @@ header {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #8b5c9e;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -315,7 +301,6 @@ header {
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
-    background-color: #8b5c9e;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -359,15 +344,12 @@ header {
     max-width: 800px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #8b5c9e;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-
 .page-header{
-    background-color: #8b5c9e;
     margin-bottom: 5px;
     color: white;
 }
